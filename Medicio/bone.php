@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -81,7 +82,7 @@
         <i class="bi bi-list mobile-nav-toggle"></i>
       </nav><!-- .navbar -->
 
-      <a href="#appointment" class="appointment-btn scrollto"><span class="d-none d-md-inline">Make an</span> Appointment</a>
+      <a href="index.php#appointment" class="appointment-btn scrollto"><span class="d-none d-md-inline">View</span> Appointment</a>
 
     </div>
   </header><!-- End Header -->
@@ -94,7 +95,7 @@
       <br>
 
       <div class="section-title">
-        <h2>Dermatologist </h2>
+        <h2>Orthopedic </h2>
         <p></p>
       </div>
 
@@ -120,30 +121,32 @@
   $result = $connection->query($sql);
 
   if ($result->num_rows > 0) {
-      while ($row = $result->fetch_assoc()) {
-          // Output HTML dynamically with data from the database
-          echo '
-          <div class="col-lg-3 col-md-6">
+    while ($row = $result->fetch_assoc()) {
+        // Output HTML dynamically with data from the database
+        echo '
+        <div class="col-lg-3 col-md-6">
             <div class="box" data-aos="fade-up" data-aos-delay="100">
-              <img src="assets/img/doctor.jpg" alt="Doctor Image" style="width: 100px; height: 100px;">
-              <h3>' . $row["full_name"] . '</h3>
-              <h4><sup>' . $row["full_name"] . '</sup><span></span></h4>
-              <ul>
-                <li></li>
-                <li>Bhimavaram</li>
-                <li>6 Years Experienced</li>
-                <li class="na"></li>
-                <li class="na"></li>
-              </ul>
-              <div class="btn-wrap">
-                <a href="slot.php" class="btn-buy">Book Slot</a>
-              </div>
+                <img src="assets/img/doctor.jpg" alt="Doctor Image" style="width: 100px; height: 100px;">
+                <h3>' . $row["full_name"] . '</h3>
+                <h4><sup>' . $row["full_name"] . '</sup><span></span></h4>
+                <ul>
+                    <li></li>
+                    <li>Bhimavaram</li>
+                    <li>6 Years Experienced</li>
+                    <li class="na"></li>
+                    <li class="na"></li>
+                </ul>
+                <div class="btn-wrap">
+                <a href="slot.php?d_id=' . $row["d_id"] . '" class="btn-buy">Book Slot</a>
+
+                </div>
             </div>
-          </div>';
-      }
-  } else {
-      echo "0 results found";
-  }
+        </div>';
+    }
+} else {
+    echo "0 results found";
+}
+
 
   // Close connection
   $connection->close();
