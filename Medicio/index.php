@@ -244,7 +244,8 @@ if (!isset($_SESSION['user_id'])) {
     </section><!-- End Cta Section -->
 
     <!-- ======= About Us Section ======= -->
-    <section id="about" class="about">
+
+    <!-- <section id="about" class="about">
       <div class="container" data-aos="fade-up">
 
         <div class="section-title">
@@ -276,7 +277,9 @@ if (!isset($_SESSION['user_id'])) {
         </div>
 
       </div>
-    </section><!-- End About Us Section -->
+    </section> -->
+    
+    <!-- End About Us Section -->
 
     <!-- ======= Counts Section ======= -->
     <section id="counts" class="counts">
@@ -327,7 +330,9 @@ if (!isset($_SESSION['user_id'])) {
     </section><!-- End Counts Section -->
 
     <!-- ======= Features Section ======= -->
-    <section id="features" class="features">
+
+
+    <!-- <section id="features" class="features">
       <div class="container" data-aos="fade-up">
 
         <div class="row">
@@ -357,7 +362,9 @@ if (!isset($_SESSION['user_id'])) {
         </div>
 
       </div>
-    </section><!-- End Features Section -->
+    </section> -->
+    
+    <!-- End Features Section -->
 
     <!-- ======= Services Section ======= -->
     <section id="services" class="services services">
@@ -408,7 +415,6 @@ if (!isset($_SESSION['user_id'])) {
     <section id="appointment" class="appointment section-bg">
       <div class="container" data-aos="fade-up">
       <?php
-session_start();
 
 // Check if patient is logged in
 if (!isset($_SESSION['user_id'])) {
