@@ -414,7 +414,12 @@ if (!isset($_SESSION['user_id'])) {
     <!-- ======= Appointment Section ======= -->
     <section id="appointment" class="appointment section-bg">
       <div class="container" data-aos="fade-up">
-      <?php
+     
+        <div class="section-title">
+          <h2>Your  Appointment</h2>
+          <p> Be on time to get your checkup.</p>
+        </div>
+        <?php
 
 // Check if patient is logged in
 if (!isset($_SESSION['user_id'])) {
@@ -432,6 +437,18 @@ if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
 
+// Cancel slot if requested
+if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['cancel_booking_id'])) {
+    $booking_id = $_POST['cancel_booking_id'];
+    $delete_query = "DELETE FROM patient_booking WHERE booking_id = '$booking_id'";
+    if ($conn->query($delete_query) === TRUE) {
+        // Slot cancelled successfully
+        exit; // Terminate script execution after redirection
+    } else {
+        echo "Error cancelling slot: " . $conn->error;
+    }
+}
+
 // Fetch appointments booked by the patient with doctor's name
 $patient_id = $_SESSION['user_id'];
 $query = "SELECT pb.booking_id, pb.date, pb.time, d.full_name 
@@ -440,11 +457,9 @@ $query = "SELECT pb.booking_id, pb.date, pb.time, d.full_name
           WHERE pb.patient_id = '$patient_id'";
 $result = $conn->query($query);
 ?>
-        <div class="section-title">
-          <h2>Your  Appointment</h2>
-          <p> Be on time to get your checkup.</p>
-        </div>
-        <style>
+
+
+    <style>
         table {
             width: 100%;
             border-collapse: collapse;
@@ -458,7 +473,8 @@ $result = $conn->query($query);
             background-color: #f2f2f2;
         }
     </style>
-        <h2>Appointments</h2>
+
+    <h2>Your Appointments</h2>
     <table>
         <thead>
             <tr>
@@ -466,6 +482,7 @@ $result = $conn->query($query);
                 <th>Date</th>
                 <th>Time</th>
                 <th>Doctor Name</th>
+                <th>Cancel</th>
             </tr>
         </thead>
         <tbody>
@@ -477,14 +494,29 @@ $result = $conn->query($query);
                     echo "<td>" . $row['date'] . "</td>";
                     echo "<td>" . $row['time'] . "</td>";
                     echo "<td>" . $row['full_name'] . "</td>";
+                    echo "<td><form method='post'><input type='hidden' name='cancel_booking_id' value='" . $row['booking_id'] . "'><button type='submit' onclick='return confirmCancel()'>Cancel</button></form></td>";
                     echo "</tr>";
                 }
             } else {
-                echo "<tr><td colspan='4'>No appointments booked.</td></tr>";
+                echo "<tr><td colspan='5'>No appointments booked.</td></tr>";
             }
             ?>
         </tbody>
     </table>
+
+    <script>
+        function confirmCancel() {
+            return confirm("Are you sure you want to cancel this appointment?");
+        }
+    </script>
+
+
+<?php
+// Close database connection
+$conn->close();
+?>
+
+
 
       </div>
     </section><!-- End Appointment Section -->
@@ -648,86 +680,62 @@ $result = $conn->query($query);
     <section id="doctors" class="doctors section-bg">
       <div class="container" data-aos="fade-up">
 
-        <div class="section-title">
-          <h2>Doctors</h2>
-          <p>Magnam dolores commodi suscipit. Necessitatibus eius consequatur ex aliquid fuga eum quidem. Sit sint consectetur velit. Quisquam quos quisquam cupiditate. Et nemo qui impedit suscipit alias ea. Quia fugiat sit in iste officiis commodi quidem hic quas.</p>
-        </div>
+       
 
+      <section id="pricing" class="pricing">
+    <div class="container" data-aos="fade-up">
         <div class="row">
+            <?php
 
-          <div class="col-lg-3 col-md-6 d-flex align-items-stretch">
-            <div class="member" data-aos="fade-up" data-aos-delay="100">
-              <div class="member-img">
-                <img src="assets/img/doctors/doctors-1.jpg" class="img-fluid" alt="">
-                <div class="social">
-                  <a href=""><i class="bi bi-twitter"></i></a>
-                  <a href=""><i class="bi bi-facebook"></i></a>
-                  <a href=""><i class="bi bi-instagram"></i></a>
-                  <a href=""><i class="bi bi-linkedin"></i></a>
-                </div>
-              </div>
-              <div class="member-info">
-                <h4>Walter White</h4>
-                <span>Chief Medical Officer</span>
-              </div>
-            </div>
-          </div>
+            $servername = "localhost";
+            $username = "root";
+            $password = "";
+            $dbname = "hospital_praj";
 
-          <div class="col-lg-3 col-md-6 d-flex align-items-stretch">
-            <div class="member" data-aos="fade-up" data-aos-delay="200">
-              <div class="member-img">
-                <img src="assets/img/doctors/doctors-2.jpg" class="img-fluid" alt="">
-                <div class="social">
-                  <a href=""><i class="bi bi-twitter"></i></a>
-                  <a href=""><i class="bi bi-facebook"></i></a>
-                  <a href=""><i class="bi bi-instagram"></i></a>
-                  <a href=""><i class="bi bi-linkedin"></i></a>
-                </div>
-              </div>
-              <div class="member-info">
-                <h4>Sarah Jhonson</h4>
-                <span>Anesthesiologist</span>
-              </div>
-            </div>
-          </div>
+            // Create connection
+            $connection = new mysqli($servername, $username, $password, $dbname);
 
-          <div class="col-lg-3 col-md-6 d-flex align-items-stretch">
-            <div class="member" data-aos="fade-up" data-aos-delay="300">
-              <div class="member-img">
-                <img src="assets/img/doctors/doctors-3.jpg" class="img-fluid" alt="">
-                <div class="social">
-                  <a href=""><i class="bi bi-twitter"></i></a>
-                  <a href=""><i class="bi bi-facebook"></i></a>
-                  <a href=""><i class="bi bi-instagram"></i></a>
-                  <a href=""><i class="bi bi-linkedin"></i></a>
-                </div>
-              </div>
-              <div class="member-info">
-                <h4>William Anderson</h4>
-                <span>Cardiology</span>
-              </div>
-            </div>
-          </div>
+            // Check connection
+            if ($connection->connect_error) {
+                die("Connection failed: " . $connection->connect_error);
+            }
 
-          <div class="col-lg-3 col-md-6 d-flex align-items-stretch">
-            <div class="member" data-aos="fade-up" data-aos-delay="400">
-              <div class="member-img">
-                <img src="assets/img/doctors/doctors-4.jpg" class="img-fluid" alt="">
-                <div class="social">
-                  <a href=""><i class="bi bi-twitter"></i></a>
-                  <a href=""><i class="bi bi-facebook"></i></a>
-                  <a href=""><i class="bi bi-instagram"></i></a>
-                  <a href=""><i class="bi bi-linkedin"></i></a>
-                </div>
-              </div>
-              <div class="member-info">
-                <h4>Amanda Jepson</h4>
-                <span>Neurosurgeon</span>
-              </div>
-            </div>
-          </div>
+            // Fetch doctors' data from the database
+            $sql = "SELECT * FROM doctors";
+            $result = $connection->query($sql);
 
+            if ($result->num_rows > 0) {
+                while ($row = $result->fetch_assoc()) {
+                    // Output HTML dynamically with data from the database
+                    echo '
+                    <div class="col-lg-3 col-md-6">
+                        <div class="box" data-aos="fade-up" data-aos-delay="100">
+                            <img src="assets/img/doctor.jpg" alt="Doctor Image" style="width: 100px; height: 100px;">
+                            <h3>' . $row["full_name"] . '</h3>
+                            <h4><sup>' . $row["full_name"] . '</sup><span></span></h4>
+                            <ul>
+                                <li>Specialization: ' . $row["sp"] . '</li>
+                                <li>Bhimavaram</li>
+                                <li class="na"></li>
+                                <li class="na"></li>
+                            </ul>
+                            <div class="btn-wrap">
+                                <a href="slot.php?d_id=' . $row["d_id"] . '" class="btn-buy">Book Slot</a>
+                            </div>
+                        </div>
+                    </div>';
+                }
+            } else {
+                echo "0 results found";
+            }
+
+            // Close connection
+            $connection->close();
+            ?>
         </div>
+    </div>
+</section>
+
 
       </div>
     </section><!-- End Doctors Section -->
@@ -842,7 +850,62 @@ $result = $conn->query($query);
 
       </div>
     </section><!-- End Pricing Section -->
+    <section id="pricing" class="pricing">
+    <div class="container" data-aos="fade-up">
+    <div class="row">
+  <?php
 
+  $servername = "localhost";
+  $username = "root";
+  $password = "";
+  $dbname = "hospital_praj";
+
+  // Create connection
+  $connection = new mysqli($servername, $username, $password, $dbname);
+
+  // Check connection
+  if ($connection->connect_error) {
+      die("Connection failed: " . $connection->connect_error);
+  }
+
+  // Fetch doctors' data from the database
+  $sql = "SELECT * FROM doctors ";
+  $result = $connection->query($sql);
+
+  if ($result->num_rows > 0) {
+    while ($row = $result->fetch_assoc()) {
+        // Output HTML dynamically with data from the database
+        echo '
+        <div class="col-lg-3 col-md-6">
+            <div class="box" data-aos="fade-up" data-aos-delay="100">
+                <img src="assets/img/doctor.jpg" alt="Doctor Image" style="width: 100px; height: 100px;">
+                <h3>' . $row["full_name"] . '</h3>
+                <h4><sup>' . $row["full_name"] . '</sup><span></span></h4>
+                <ul>
+                    <li></li>
+                    <li>Bhimavaram</li>
+                    <li>6 Years Experienced</li>
+                    <li class="na"></li>
+                    <li class="na"></li>
+                </ul>
+                <div class="btn-wrap">
+                <a href="slot.php?d_id=' . $row["d_id"] . '" class="btn-buy">Book Slot</a>
+
+                </div>
+            </div>
+        </div>';
+    }
+} else {
+    echo "0 results found";
+}
+
+
+  // Close connection
+  $connection->close();
+  ?>
+</div>
+    </div>
+    </section>
     <!-- ======= Frequently Asked Questioins Section ======= -->
     <section id="faq" class="faq section-bg">
       <div class="container" data-aos="fade-up">

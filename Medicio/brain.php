@@ -132,7 +132,8 @@
                 <ul>
                     <li></li>
                     <li>Bhimavaram</li>
-                    <li>6 Years Experienced</li>
+                    <li>Specialization: ' . $row["sp"] . '</li>
+
                     <li class="na"></li>
                     <li class="na"></li>
                 </ul>
