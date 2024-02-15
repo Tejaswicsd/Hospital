@@ -17,8 +17,7 @@ if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
 
-// Fetch available slots for the doctor from the app table
-$d_id = 444;
+$d_id=123;
 
 // Process form submission if POST request
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
@@ -74,6 +73,8 @@ if ($_SERVER["REQUEST_METHOD"] == "GET" && isset($_GET['date'])) {
 // Close database connection
 $conn->close();
 ?>
+
+
 
 <!DOCTYPE HTML>
 <html>
@@ -200,5 +201,82 @@ $conn->close();
             }
         });
     </script>
+    <script>
+    document.addEventListener('DOMContentLoaded', function () {
+        document.getElementById('fetchSlotsButton').addEventListener('click', fetchTimeSlots);
+
+        function fetchTimeSlots() {
+            var selectedDate = document.getElementById('datePicker').value;
+            var url = window.location.href + '?date=' + selectedDate;
+            
+            fetch(url)
+                .then(response => response.json())
+                .then(data => {
+                    displayTimeSlots(data);
+                })
+                .catch(error => {
+                    console.error('Error fetching time slots:', error);
+                });
+        }
+
+        function displayTimeSlots(slotsData) {
+            var container = document.getElementById('timeSlotsTableContainer');
+            container.innerHTML = ''; // Clear previous content
+
+            if (slotsData.length === 0) {
+                container.textContent = 'No available time slots for selected date.';
+                return;
+            }
+
+            var table = document.createElement('table');
+            var headerRow = table.insertRow();
+            headerRow.innerHTML = '<th>Time Slot</th><th>Action</th>';
+
+            slotsData.forEach(slot => {
+                var row = table.insertRow();
+                var timeSlotCell = row.insertCell();
+                timeSlotCell.textContent = slot.time;
+                var actionCell = row.insertCell();
+                if (slot.status === 'yes') {
+                    var bookButton = document.createElement('button');
+                    bookButton.textContent = 'Book';
+                    bookButton.addEventListener('click', function() {
+                        bookSlot(slot.time);
+                    });
+                    actionCell.appendChild(bookButton);
+                } else {
+                    actionCell.textContent = 'Not available';
+                }
+            });
+
+            container.appendChild(table);
+        }
+
+        function bookSlot(time) {
+            var date = document.getElementById('datePicker').value;
+            var formData = new FormData();
+            formData.append('date', date);
+            formData.append('time', time);
+
+            fetch(window.location.href, {
+                method: 'POST',
+                body: formData
+            })
+            .then(response => response.text())
+            .then(data => {
+                if (data.includes('successfully')) {
+                    alert('Slot booked successfully!');
+                } else {
+                    alert(data);
+                }
+                fetchTimeSlots(); // Refresh time slots after booking
+            })
+            .catch(error => {
+                console.error('Error booking slot:', error);
+            });
+        }
+    });
+</script>
+
 </body>
 </html>

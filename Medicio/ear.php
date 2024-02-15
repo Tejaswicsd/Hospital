@@ -47,7 +47,7 @@
         <i class="bi bi-clock"></i> Monday - Saturday, 8AM to 10PM
       </div>
       <div class="d-flex align-items-center">
-        <i class="bi bi-phone"></i> Call us now 088162 21111
+        <i class="bi bi-phone"></i> Call us now 088162 21111
       </div>
     </div>
   </div>
@@ -56,33 +56,27 @@
   <header id="header" class="fixed-top">
     <div class="container d-flex align-items-center">
 
-      <a href="index.html" class="logo me-auto"><img src="assets/img/fix.jpg" alt=""></a>
+      <a href="index.php" class="logo me-auto"><img src="assets/img/fix.jpg" alt=""></a>
       <!-- Uncomment below if you prefer to use an image logo -->
-      <!-- <h1 class="logo me-auto"><a href="index.html">Medicio</a></h1> -->
+      <!-- <h1 class="logo me-auto"><a href="index.php">Medicio</a></h1> -->
 
       <nav id="navbar" class="navbar order-last order-lg-0">
         <ul>
-          <li><a class="nav-link scrollto " href="index.html">Home</a></li>
-          <li><a class="nav-link scrollto" href="index.html#about">About</a></li>
-          <li><a class="nav-link scrollto" href="index.html#services">Services</a></li>
-          <li><a class="nav-link scrollto" href="index.html#departments">Departments</a></li>
-          <li><a class="nav-link scrollto" href="index.html#doctors">Doctors</a></li>
+          <li><a class="nav-link scrollto " href="index.php">Home</a></li>
+          <li><a class="nav-link scrollto" href="index.php#about">About</a></li>
+          <li><a class="nav-link scrollto" href="index.php#services">Services</a></li>
+          <li><a class="nav-link scrollto" href="index.php#departments">Departments</a></li>
+          <li><a class="nav-link scrollto" href="index.php#doctors">Doctors</a></li>
           <li class="dropdown"><a href="#"><span>Drop Down</span> <i class="bi bi-chevron-down"></i></a>
             <ul>
-              <li><a href="heart.html">cardiologist</a></li>
-              <li><a href="teeth.html">Dentist</a></li>
-              <li><a href="skin.html">Gynecologist</a></li>
-              <li><a href="brain.html">Neurologist</a></li>
-              <li><a href="bone.html">physician</a></li>
-              <li><a href="ear.html">Audiologist </a></li>
-              <li><a href="#"></a></li>
-              
-              <li><a href="#"> </a></li>
-              <li><a href="#"></a></li>
-              <li><a href="#"></a></li>
+              <li><a href="heart.php">Cardiologist</a></li>
+              <li><a href="teeth.php">Dentist</a></li>
+              <li><a href="skin.php">Gynecologist</a></li>
+              <li><a href="brain.php">Neurologist</a></li>
+              <li><a href="bone.php">Physician</a></li>
+              <li><a href="ear.php">Audiologist</a></li>
             </ul>
           </li>
-          <li><a class="nav-link scrollto" href="#"></a></li>
         </ul>
         <i class="bi bi-list mobile-nav-toggle"></i>
       </nav><!-- .navbar -->
@@ -91,6 +85,7 @@
 
     </div>
   </header><!-- End Header -->
+
   <section id="pricing" class="pricing">
     <div class="container" data-aos="fade-up">
       <br>
@@ -99,95 +94,67 @@
       <br>
 
       <div class="section-title">
-        <h2>Audiologist</h2>
+        <h2>Dermatologist </h2>
         <p></p>
       </div>
 
-
       <div class="row">
+      <div class="row">
+  <?php
 
-        <div class="col-lg-3 col-md-6">
-          <div class="box" data-aos="fade-up" data-aos-delay="100">
-            <img src="assets/img/doctor.jpg" alt="Doctor Image" style="width: 100px; height: 100px;">
-            <h3>Dr.K.V.R Varma</h3>
-            <h4><sup>DR.K.V.R Varma </sup><span></span></h4>
-            <ul>
-              <li></li>
-              <li>Bhimavaram</li>
-              <li>6 Years Experienced</li>
-              <li class="na"></li>
-              <li class="na"></li>
-            </ul>
-            <div class="btn-wrap">
-              <a href="#" class="btn-buy">Book Slot</a>
-            </div>
-          </div>
-        </div>
-        <div class="col-lg-3 col-md-6">
+  $servername = "localhost";
+  $username = "root";
+  $password = "";
+  $dbname = "hospital_praj";
+
+  // Create connection
+  $connection = new mysqli($servername, $username, $password, $dbname);
+
+  // Check connection
+  if ($connection->connect_error) {
+      die("Connection failed: " . $connection->connect_error);
+  }
+
+  // Fetch doctors' data from the database
+  $sql = "SELECT * FROM doctors where sp='ENT'";
+  $result = $connection->query($sql);
+
+  if ($result->num_rows > 0) {
+      while ($row = $result->fetch_assoc()) {
+          // Output HTML dynamically with data from the database
+          echo '
+          <div class="col-lg-3 col-md-6">
             <div class="box" data-aos="fade-up" data-aos-delay="100">
               <img src="assets/img/doctor.jpg" alt="Doctor Image" style="width: 100px; height: 100px;">
-              <h3>Dr.Ajay Kumar</h3>
-              <h4><sup>Dr.Ajay Kumar</sup><span></span></h4>
+              <h3>' . $row["full_name"] . '</h3>
+              <h4><sup>' . $row["full_name"] . '</sup><span></span></h4>
               <ul>
                 <li></li>
                 <li>Bhimavaram</li>
-                <li>5 years Experienced</li>
+                <li>6 Years Experienced</li>
                 <li class="na"></li>
                 <li class="na"></li>
               </ul>
               <div class="btn-wrap">
-                <a href="#" class="btn-buy">Book Slot</a>
+                <a href="slot.php" class="btn-buy">Book Slot</a>
               </div>
             </div>
-          </div>
-  
-          
+          </div>';
+      }
+  } else {
+      echo "0 results found";
+  }
 
-        
-        <div class="col-lg-3 col-md-6 mt-4 mt-lg-0">
-          <div class="box" data-aos="fade-up" data-aos-delay="300">
-            <img src="assets/img/doctor.jpg" alt="Doctor Image" style="width: 100px; height: 100px;">
-            <h3>Dr.Siva sai</h3>
-            <h4><sup>Dr.Siva sai</sup><span> </span></h4>
-            <ul>
-              <li></li>
-              <li>Bhimavaram</li>
-              <li>5 years Experienced</li>
-              <li></li>
-              <li></li>
-            </ul>
-            <div class="btn-wrap">
-              <a href="#" class="btn-buy">Book Slot</a>
-            </div>
-          </div>
-        </div>
+  // Close connection
+  $connection->close();
+  ?>
+</div>
 
-        <div class="col-lg-3 col-md-6 mt-4 mt-lg-0">
-          <div class="box" data-aos="fade-up" data-aos-delay="400">
-            <img src="assets/img/doctor.jpg" alt="Doctor Image" style="width: 100px; height: 100px;">
-            <span class="advanced"></span>
-            <h3>Dr.Ramana Kumar</h3>
-            <h4><sup>Dr.Ramana Kumar</sup><span> </span></h4>
-            <ul>
-              <li></li>
-              <li>Bhimavaram</li>
-              <li>4 Years experienced</li>
-              <li></li>
-              <li></li>
-            </ul>
-            <div class="btn-wrap">
-              <a href="#" class="btn-buy">Book Slot</a>
-            </div>
-          </div>
-        </div>
-
+       
       </div>
-
     </div>
   </section><!-- End Pricing Section -->
-  
 
-  
   <!-- Vendor JS Files -->
   <script src="assets/vendor/purecounter/purecounter_vanilla.js"></script>
   <script src="assets/vendor/aos/aos.js"></script>

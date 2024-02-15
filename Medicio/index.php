@@ -73,25 +73,25 @@ if (!isset($_SESSION['user_id'])) {
   <header id="header" class="fixed-top">
     <div class="container d-flex align-items-center">
 
-      <a href="index.html" class="logo me-auto"><img src="assets/img/fix.jpg" alt=""></a>
+      <a href="index.php" class="logo me-auto"><img src="assets/img/fix.jpg" alt=""></a>
       <!-- Uncomment below if you prefer to use an image logo -->
-      <!-- <h1 class="logo me-auto"><a href="index.html">Medicio</a></h1> -->
+      <!-- <h1 class="logo me-auto"><a href="index.php">Medicio</a></h1> -->
 
       <nav id="navbar" class="navbar order-last order-lg-0">
         <ul>
-          <li><a class="nav-link scrollto " href="index.html">Home</a></li>
-          <li><a class="nav-link scrollto" href="index.html#about">About</a></li>
-          <li><a class="nav-link scrollto" href="index.html#services">Services</a></li>
-          <li><a class="nav-link scrollto" href="index.html#departments">Departments</a></li>
-          <li><a class="nav-link scrollto" href="index.html#doctors">Doctors</a></li>
+          <li><a class="nav-link scrollto " href="index.php">Home</a></li>
+          <li><a class="nav-link scrollto" href="index.php#about">About</a></li>
+          <li><a class="nav-link scrollto" href="index.php#services">Services</a></li>
+          <li><a class="nav-link scrollto" href="index.php#departments">Departments</a></li>
+          <li><a class="nav-link scrollto" href="index.php#doctors">Doctors</a></li>
           <li class="dropdown"><a href="#"><span>Drop Down</span> <i class="bi bi-chevron-down"></i></a>
             <ul>
-              <li><a href="heart.html">cardiologist</a></li>
-              <li><a href="teeth.html">Dentist</a></li>
-              <li><a href="skin.html">Gynecologist</a></li>
-              <li><a href="brain.html">Neurologist</a></li>
-              <li><a href="bone.html">physician</a></li>
-              <li><a href="ear.html">Audiologist </a></li>
+              <li><a href="heart.php">cardiologist</a></li>
+              <li><a href="teeth.php">Dentist</a></li>
+              <li><a href="skin.php">Dermatologist </a></li>
+              <li><a href="brain.php">Neurologist</a></li>
+              <li><a href="bone.php">Orthopedic</a></li>
+              <li><a href="ear.php">ENT </a></li>
               <li><a href="#"></a></li>
               
               <li><a href="#"> </a></li>
@@ -194,33 +194,33 @@ if (!isset($_SESSION['user_id'])) {
           <div class="row">
               <div class="col-lg-4 col-md-6 icon-box" data-aos="zoom-in" data-aos-delay="100">
                   <div class="icon"><img src="assets/img/heart.jpg" alt="Heart Image" width="64" height="64"></div>
-                  <h4 class="title"><a href="heart.html">cardiologist</a></h4>
+                  <h4 class="title"><a href="heart.php">cardiologist</a></h4>
                   <p class="description">Consult our Best and well Experienced cardiologist For Healthy Heart</p>
               </div>
               <div class="col-lg-4 col-md-6 icon-box" data-aos="zoom-in" data-aos-delay="200">
                   <div class="icon"><img src="assets/img/girls.avif" alt="Pills Image" width="64" height="64"></div>
-                  <h4 class="title"><a href="skin.html">Gynecologist</a></h4>
+                  <h4 class="title"><a href="skin.php">Dermatologist </a></h4>
                   <p class="description">Consult our Best and well Experienced Gynecologist  For Healthy Skin</p>
               </div>
               <div class="col-lg-4 col-md-6 icon-box" data-aos="zoom-in" data-aos-delay="200">
                 <div class="icon"><img src="assets/img/brain.jpg" alt="Pills Image" width="64" height="64"></div>
-                <h4 class="title"><a href="brain.html">Neurologist</a></h4>
+                <h4 class="title"><a href="brain.php">Neurologist</a></h4>
                 <p class="description">Consult our Best and well Experienced Neurologist For Healthy Brain </p>
             </div>
             <div class="col-lg-4 col-md-6 icon-box" data-aos="zoom-in" data-aos-delay="200">
               <div class="icon"><img src="assets/img/heyy.jpeg" alt="Pills Image" width="64" height="64"></div>
-              <h4 class="title"><a href="bone.html">physician</a></h4>
-              <p class="description">Consult our Best and well Experienced physician For Healthy Body</p>
+              <h4 class="title"><a href="bone.php">Orthopedic </a></h4>
+              <p class="description">Consult our Best and well Experienced Orthopedic  For Healthy Body</p>
           </div>
           <div class="col-lg-4 col-md-6 icon-box" data-aos="zoom-in" data-aos-delay="200">
             <div class="icon"><img src="assets/img/teeth.jpg" alt="Pills Image" width="64" height="64"></div>
-            <h4 class="title"><a href="teeth.html">Dentist</a></h4>
+            <h4 class="title"><a href="teeth.php">Dentist</a></h4>
             <p class="description">Consult our Best and well Experienced Dentist For Healthy Teeth</p>
         </div>
         <div class="col-lg-4 col-md-6 icon-box" data-aos="zoom-in" data-aos-delay="200">
           <div class="icon"><img src="assets/img/ear.avif" alt="Pills Image" width="64" height="64"></div>
-          <h4 class="title"><a href="ear.html">Audiologist</a></h4>
-          <p class="description">Consult our Best and well Experienced Audiologist For Healthy Ear for Hearing</p>
+          <h4 class="title"><a href="ear.php">ENT</a></h4>
+          <p class="description">Consult our Best and well Experienced ENT For Healthy Ear for Hearing</p>
       </div>
               <!-- Repeat the above structure for other services, replacing the img src attribute accordingly -->
           </div>
