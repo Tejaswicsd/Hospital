@@ -118,7 +118,7 @@ if (!isset($_SESSION['user_id'])) {
       <div class="carousel-inner" role="listbox">
 
         <!-- Slide 1 -->
-        <div class="carousel-item active" style="background-image: url(assets/img/fix.jpg)">
+        <div class="carousel-item active" style="background-image: url(assets/img/moon.jpg)">
           
         </div>
 
