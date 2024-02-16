@@ -63,25 +63,29 @@
       <nav id="navbar" class="navbar order-last order-lg-0">
         <ul>
           <li><a class="nav-link scrollto " href="index.php">Home</a></li>
-          <li><a class="nav-link scrollto" href="index.php#about">About</a></li>
           <li><a class="nav-link scrollto" href="index.php#services">Services</a></li>
-          <li><a class="nav-link scrollto" href="index.php#departments">Departments</a></li>
           <li><a class="nav-link scrollto" href="index.php#doctors">Doctors</a></li>
           <li class="dropdown"><a href="#"><span>Drop Down</span> <i class="bi bi-chevron-down"></i></a>
             <ul>
-              <li><a href="heart.php">Cardiologist</a></li>
+              <li><a href="heart.php">cardiologist</a></li>
               <li><a href="teeth.php">Dentist</a></li>
-              <li><a href="skin.php">Gynecologist</a></li>
+              <li><a href="skin.php">Dermatologist </a></li>
               <li><a href="brain.php">Neurologist</a></li>
-              <li><a href="bone.php">Physician</a></li>
-              <li><a href="ear.php">Audiologist</a></li>
+              <li><a href="bone.php">Orthopedic</a></li>
+              <li><a href="ear.php">ENT </a></li>
+              <li><a href="#"></a></li>
+              
+              <li><a href="#"> </a></li>
+              <li><a href="#"></a></li>
+              <li><a href="#"></a></li>
             </ul>
           </li>
+          <li><a class="nav-link scrollto" href="#"></a></li>
         </ul>
         <i class="bi bi-list mobile-nav-toggle"></i>
       </nav><!-- .navbar -->
 
-      <a href="index.php#appointment" class="appointment-btn scrollto"><span class="d-none d-md-inline">View</span> Appointment</a>
+      <a href="#appointment" class="appointment-btn scrollto"><span class="d-none d-md-inline">View </span> Appointment</a>
 
     </div>
   </header><!-- End Header -->

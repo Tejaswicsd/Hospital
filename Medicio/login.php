@@ -62,7 +62,7 @@ if (isset($_POST['register'])) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css"> <!-- Link to your external CSS file -->
-    <title>Tennis Tournament Admin</title>
+    <title>Patient_login</title>
     <style>
         /* Inline CSS styles */
         body {
@@ -138,14 +138,14 @@ if (isset($_POST['register'])) {
 
 <body>
     <div class="login-container">
-        <h2>Admin Login</h2>
+        <h2>Patient Login</h2>
         <form action="" method="post">
             <!-- Error message display -->
             <?php if (isset($errorMessage)) { ?>
                 <p class="error-message"><?php echo $errorMessage; ?></p>
             <?php } ?>
 
-            <label for="p_id">ID:</label>
+            <label for="p_id">mobile number:</label>
             <input type="text" id="p_id" name="p_id" required>
 
             <label for="password">Password:</label>
